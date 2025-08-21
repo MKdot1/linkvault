@@ -1,8 +1,8 @@
-package eu.itcrafters.linkvault.infrastructure.rest;
+package eu.itcrafters.linkvault.infrastructure.errorhandling;
 
-import eu.itcrafters.linkvault.infrastructure.rest.error.ApiError;
-import eu.itcrafters.linkvault.infrastructure.rest.exception.DataNotFoundException;
-import eu.itcrafters.linkvault.infrastructure.rest.exception.ForbiddenException;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.error.ApiError;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.exception.DataNotFoundException;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.exception.ForbiddenException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

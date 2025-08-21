@@ -1,4 +1,4 @@
-package eu.itcrafters.linkvault.infrastructure.db;
+package eu.itcrafters.linkvault.infrastructure.persistence;
 
 import org.hsqldb.server.Server;
 import org.slf4j.Logger;
