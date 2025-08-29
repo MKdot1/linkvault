@@ -1,4 +1,4 @@
-package eu.itcrafters.linkvault.infrastructure.rest.exception;
+package eu.itcrafters.linkvault.infrastructure.errorhandling.exception;
 
 import lombok.Getter;
 

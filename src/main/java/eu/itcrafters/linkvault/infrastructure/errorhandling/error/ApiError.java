@@ -1,4 +1,4 @@
-package eu.itcrafters.linkvault.infrastructure.rest.error;
+package eu.itcrafters.linkvault.infrastructure.errorhandling.error;
 
 import lombok.Data;
 import org.springframework.http.HttpStatus;

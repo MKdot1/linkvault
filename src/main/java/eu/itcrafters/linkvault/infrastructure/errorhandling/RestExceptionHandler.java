@@ -1,8 +1,8 @@
-package eu.itcrafters.linkvault.infrastructure.rest;
+package eu.itcrafters.linkvault.infrastructure.errorhandling;
 
-import eu.itcrafters.linkvault.infrastructure.rest.error.ApiError;
-import eu.itcrafters.linkvault.infrastructure.rest.exception.DataNotFoundException;
-import eu.itcrafters.linkvault.infrastructure.rest.exception.ForbiddenException;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.error.ApiError;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.exception.DataNotFoundException;
+import eu.itcrafters.linkvault.infrastructure.errorhandling.exception.ForbiddenException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -61,9 +61,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatusCode status, WebRequest webRequest) {
 
-        FieldError firstError = exception.getBindingResult()
-                .getFieldErrors()
-                .get(0);
+        FieldError firstError = exception.getBindingResult().getFieldErrors().get(0);
 
         ServletWebRequest servletReq = (ServletWebRequest) webRequest;
         String path = servletReq.getRequest().getRequestURI();
