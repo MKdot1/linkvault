@@ -1,6 +1,7 @@
 package eu.itcrafters.linkvault.infrastructure.persistence.link;
 
 import eu.itcrafters.linkvault.infrastructure.persistence.category.Category;
+import eu.itcrafters.linkvault.infrastructure.persistence.linktag.LinkTag;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -9,6 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.Instant;
+import java.util.List;
 
 @Getter
 @Setter
@@ -46,5 +48,8 @@ public class Link {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CATEGORY_ID", nullable = false)
     private Category category;
+
+    @OneToMany(mappedBy = "link", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<LinkTag> linkTags;
 
 }
