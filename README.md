@@ -38,7 +38,7 @@ Uses Spring Boot, Spring Data JPA, HSQLDB (in-memory), and MapStruct.
 ### Clone the repository
 
 ```bash
-git clone https://github.com/bcs-hub/linkvault.git
+git clone https://github.com/MKdot1/linkvault.git
 cd linkvault
 ```
 
