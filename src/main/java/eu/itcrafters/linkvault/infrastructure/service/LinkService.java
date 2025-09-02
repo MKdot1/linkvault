@@ -11,7 +11,7 @@ import eu.itcrafters.linkvault.infrastructure.persistence.link.LinkRepository;
 import eu.itcrafters.linkvault.infrastructure.persistence.linktag.LinkTag;
 import eu.itcrafters.linkvault.infrastructure.persistence.linktag.LinkTagRepository;
 import eu.itcrafters.linkvault.infrastructure.persistence.tag.Tag;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,18 +27,39 @@ public class LinkService {
     private final LinkTagRepository linkTagRepository;
 
     public List<LinkInfo> getAllLinks() {
+        return getListOfAllLinks();
+    }
+
+    public LinkInfo getLinkById(Integer id) {
+        return getTheLinkByID(id);
+    }
+
+    public LinkInfo addLink(LinkCreateRequest request) {
+        return saveTheLink(request);
+    }
+
+    public LinkInfo updateLink(Integer id, LinkUpdateRequest request) {
+        return updateTheLink(id, request);
+    }
+
+    @Transactional
+    public void deleteLink(Integer id) {
+        deleteTheLink(id);
+    }
+
+    private List<LinkInfo> getListOfAllLinks() {
         List<Link> links = linkRepository.findAll();
 
         return linkMapper.toLinkInfoList(links);
     }
 
-    public LinkInfo getLinkById(Integer id) {
+    private LinkInfo getTheLinkByID(Integer id) {
         Link link = linkRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Link not found with id: " + id));
 
         return linkMapper.toLinkInfo(link);
     }
 
-    public LinkInfo addLink(LinkCreateRequest request) {
+    private LinkInfo saveTheLink(LinkCreateRequest request) {
         // Build Link
         Link link = new Link();
         link.setAddress(request.getLinkAddress());
@@ -70,7 +91,7 @@ public class LinkService {
         return linkMapper.toLinkInfo(link);
     }
 
-    public LinkInfo updateLink(Integer id, LinkUpdateRequest request) {
+    private LinkInfo updateTheLink(Integer id, LinkUpdateRequest request) {
         // Load existing the link or 404
         Link link = linkRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Link not found with id: " + id));
 
@@ -95,8 +116,7 @@ public class LinkService {
         return linkMapper.toLinkInfo(saved);
     }
 
-    @Transactional
-    public void deleteLink(Integer id) {
+    private void deleteTheLink(Integer id) {
         if (!linkRepository.existsById(id)) {
             throw new DataNotFoundException("Link not found with id: " + id);
         }
