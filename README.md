@@ -14,7 +14,9 @@ Built for the graduation project.
 4. [Swagger UI](#swagger-ui)
 5. [Configuration](#configuration)
 6. [Database Initialization](#database-initialization)
-7. [Example](#example)
+7. [Available endpoints](#available-endpoints)
+8. [Project structure](#project-structure)
+9. [Example](#example)
 
 ---
 
@@ -81,6 +83,43 @@ Spring Boot automatically runs:
 
 ---
 
+---
+
+## Available Endpoints
+
+| Method | Path       | Description                  |
+|--------|------------|------------------------------|
+| GET    | /link/all  | Retrieve all links           |
+| GET    | /link/{id} | Retrieve a single link by ID |
+| POST   | /link      | Create a new link            |
+| PUT    | /link/{id} | Update an existing link      |
+| DELETE | /link/{id} | Delete a link by ID          |
+
+---
+
+## Project Structure
+
+```
+linkvault/
+└── src/
+    ├── main/
+    │   ├── java/eu/itcrafters/linkvault/infrastructure/
+    │   │   ├── controller/        # REST controllers & DTOs
+    │   │   ├── service/           # Business logic services
+    │   │   ├── persistence/       # Entities, repositories, mappers
+    │   │   └── errorhandling/     # Exception handling & error models
+    │   └── resources/
+    │       ├── application.properties
+    │       ├── schema.sql         # DB schema
+    │       └── data.sql           # Seed data
+    ├── test/
+    │   └── java/eu/itcrafters/linkvault/
+    │       └── LinkvaultApplicationTests.java
+├── build.gradle
+├── settings.gradle
+└── README.md
+```
+
 ## Example
 
 **POST** `/link`
@@ -92,5 +131,10 @@ Spring Boot automatically runs:
   "workflowStatus": "waiting",
   "visibility": "private",
   "categoryId": 1,
-  "tagIds": [2, 3, 5]
+  "tagIds": [
+    2,
+    3,
+    5
+  ]
 }
+```
