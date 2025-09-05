@@ -1,8 +1,8 @@
 package eu.itcrafters.linkvault.infrastructure.service;
 
-import eu.itcrafters.linkvault.infrastructure.controller.LinkCreateRequest;
-import eu.itcrafters.linkvault.infrastructure.controller.LinkInfo;
-import eu.itcrafters.linkvault.infrastructure.controller.LinkUpdateRequest;
+import eu.itcrafters.linkvault.infrastructure.controller.LinkCreateRequestDTO;
+import eu.itcrafters.linkvault.infrastructure.controller.LinkInfoDTO;
+import eu.itcrafters.linkvault.infrastructure.controller.LinkUpdateRequestDTO;
 import eu.itcrafters.linkvault.infrastructure.errorhandling.exception.DataNotFoundException;
 import eu.itcrafters.linkvault.infrastructure.persistence.category.Category;
 import eu.itcrafters.linkvault.infrastructure.persistence.link.Link;
@@ -26,19 +26,19 @@ public class LinkService {
     private final LinkMapper linkMapper;
     private final LinkTagRepository linkTagRepository;
 
-    public List<LinkInfo> getAllLinks() {
+    public List<LinkInfoDTO> getAllLinks() {
         return getListOfAllLinks();
     }
 
-    public LinkInfo getLinkById(Integer id) {
+    public LinkInfoDTO getLinkById(Integer id) {
         return getTheLinkByID(id);
     }
 
-    public LinkInfo addLink(LinkCreateRequest request) {
+    public LinkInfoDTO addLink(LinkCreateRequestDTO request) {
         return saveTheLink(request);
     }
 
-    public LinkInfo updateLink(Integer id, LinkUpdateRequest request) {
+    public LinkInfoDTO updateLink(Integer id, LinkUpdateRequestDTO request) {
         return updateTheLink(id, request);
     }
 
@@ -47,19 +47,19 @@ public class LinkService {
         deleteTheLink(id);
     }
 
-    private List<LinkInfo> getListOfAllLinks() {
+    private List<LinkInfoDTO> getListOfAllLinks() {
         List<Link> links = linkRepository.findAll();
 
         return linkMapper.toLinkInfoList(links);
     }
 
-    private LinkInfo getTheLinkByID(Integer id) {
+    private LinkInfoDTO getTheLinkByID(Integer id) {
         Link link = linkRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Link not found with id: " + id));
 
         return linkMapper.toLinkInfo(link);
     }
 
-    private LinkInfo saveTheLink(LinkCreateRequest request) {
+    private LinkInfoDTO saveTheLink(LinkCreateRequestDTO request) {
         // Build Link
         Link link = new Link();
         link.setAddress(request.getLinkAddress());
@@ -91,7 +91,7 @@ public class LinkService {
         return linkMapper.toLinkInfo(link);
     }
 
-    private LinkInfo updateTheLink(Integer id, LinkUpdateRequest request) {
+    private LinkInfoDTO updateTheLink(Integer id, LinkUpdateRequestDTO request) {
         // Load existing the link or 404
         Link link = linkRepository.findById(id).orElseThrow(() -> new DataNotFoundException("Link not found with id: " + id));
 
