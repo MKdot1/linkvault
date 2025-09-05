@@ -14,22 +14,22 @@ public class LinkController {
     private final LinkService linkService;
 
     @GetMapping("/link/all")
-    public List<LinkInfo> getAllLinks() {
+    public List<LinkInfoDTO> getAllLinks() {
         return linkService.getAllLinks();
     }
 
     @GetMapping("/link/{id}")
-    public LinkInfo getLinkById(@PathVariable Integer id) {
+    public LinkInfoDTO getLinkById(@PathVariable Integer id) {
         return linkService.getLinkById(id);
     }
 
     @PostMapping("/link")
-    public LinkInfo addLink(@RequestBody LinkCreateRequest request) {
+    public LinkInfoDTO addLink(@RequestBody LinkCreateRequestDTO request) {
         return linkService.addLink(request);
     }
 
     @PutMapping("/link/{id}")
-    public LinkInfo updateLink(@PathVariable Integer id, @RequestBody LinkUpdateRequest request) {
+    public LinkInfoDTO updateLink(@PathVariable Integer id, @RequestBody LinkUpdateRequestDTO request) {
         return linkService.updateLink(id, request);
     }
 

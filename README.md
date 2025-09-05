@@ -14,9 +14,10 @@ Built for the graduation project.
 4. [Swagger UI](#swagger-ui)
 5. [Configuration](#configuration)
 6. [Database Initialization](#database-initialization)
-7. [Available endpoints](#available-endpoints)
-8. [Project structure](#project-structure)
-9. [Example](#example)
+7. [Entity relationship diagram (ERD)](#Entity-Relationship-Diagram-(ERD))
+8. [Available endpoints](#available-endpoints)
+9. [Project structure](#project-structure)
+10. [Example](#example)
 
 ---
 
@@ -81,6 +82,9 @@ Spring Boot automatically runs:
 - **schema.sql** → defines tables (`LINK`, `CATEGORY`, `TAG`, `LINK_TAG`)
 - **data.sql** → seeds categories, tags, and example links
 
+## Entity Relationship Diagram (ERD)
+
+![ERD Diagram](docs/ERD.png)
 ---
 
 ---

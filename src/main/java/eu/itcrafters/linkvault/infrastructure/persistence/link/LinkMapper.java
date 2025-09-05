@@ -1,6 +1,6 @@
 package eu.itcrafters.linkvault.infrastructure.persistence.link;
 
-import eu.itcrafters.linkvault.infrastructure.controller.LinkInfo;
+import eu.itcrafters.linkvault.infrastructure.controller.LinkInfoDTO;
 import org.mapstruct.*;
 
 import java.util.List;
@@ -14,9 +14,9 @@ public interface LinkMapper {
     @Mapping(source = "visibility", target = "visibility")
     @Mapping(source = "category.categoryName", target = "categoryName")
     @Mapping(target = "tagNames", expression = "java(extractTagNames(link))")
-    LinkInfo toLinkInfo(Link link);
+    LinkInfoDTO toLinkInfo(Link link);
 
-    List<LinkInfo> toLinkInfoList(List<Link> links);
+    List<LinkInfoDTO> toLinkInfoList(List<Link> links);
 
     // takes all tags if any and makes a list
     default List<String> extractTagNames(Link link) {
